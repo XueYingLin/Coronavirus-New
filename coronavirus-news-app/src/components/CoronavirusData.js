@@ -3,6 +3,10 @@ import axios from 'axios';
 
 const ConronavirusData = () => {
     const [data, setData] = useState([]);
+
+    const [searchTerm, setSearchTerm] = useState("");
+    const [searchResults, setSearchResults] = useState([]);
+
     useEffect(() => {
         axios
         .get('https://covidapi.info/api/v1/global/count')
@@ -19,14 +23,33 @@ const ConronavirusData = () => {
             }
 
             setData(arr_res);
+            setSearchResults(arr_res);
         })
     }, []);
+
+    useEffect(() => {
+        const results = data.filter(d => 
+            d.date.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setSearchResults(results);
+    }, [searchTerm]);
+
+    const handleChange = event => {
+        setSearchTerm(event.target.value);
+    };
 
     return (
         <div>
             <h2>ConronavirusData</h2>
+            <input 
+                type="text" 
+                name="search" 
+                placeholder="Search by data" 
+                value={searchTerm} 
+                onChange={handleChange}/>
+
             <p className='show-data-title'>Date confirmed Deaths Recovered</p>
-            {data.map(d => 
+            {searchResults.map(d => 
                 <p className='show-data-content'>{d.date} {d.confirmed} {d.deaths} {d.recovered}</p>
                 
             )}
