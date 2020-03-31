@@ -1,0 +1,13 @@
+.seeing-medical-attention {
+ border: 1px solid aqua;
+ background-color: aqua;
+ padding: 20px;
+ margin-top: 20px;
+}
+
+.show-data-title {
+    word-spacing: 15px;
+}
+.show-data-content {
+    word-spacing: 50px;
+}
