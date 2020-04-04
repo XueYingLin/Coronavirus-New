@@ -1,6 +1,7 @@
 import React from 'react';
 import './HomePage.css';
 import ConronavirusData from './CoronavirusData';
+import Comment from './Comment';
 
 const HomePage = () => {
 
@@ -29,7 +30,10 @@ const HomePage = () => {
                 target="-blank">
                 More information</a>
             </div>
+            <br />
             <ConronavirusData />
+            <br />
+            <Comment />
         </div>
     )
 }

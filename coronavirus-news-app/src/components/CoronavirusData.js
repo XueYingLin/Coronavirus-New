@@ -13,6 +13,7 @@ const ConronavirusData = () => {
         .then(res => {
             console.log(res);
 
+
             //convert the object of result from axios get to be array 
             const arr_res = [];
             for (let date of Object.keys(res.data.result)) {
@@ -22,8 +23,14 @@ const ConronavirusData = () => {
                 })
             }
 
-            setData(arr_res);
-            setSearchResults(arr_res);
+            let lastIdx = arr_res.length - 3;
+            let newArr = [];
+            for (var i = lastIdx; i < arr_res.length; i++) {
+                newArr.push(arr_res[i]);
+            }
+
+            setData(newArr);
+            setSearchResults(newArr);
         })
     }, []);
 
@@ -40,7 +47,7 @@ const ConronavirusData = () => {
 
     return (
         <div>
-            <h2>ConronavirusData</h2>
+            <h2>CoronavirusData</h2>
             <input 
                 type="text" 
                 name="search" 
